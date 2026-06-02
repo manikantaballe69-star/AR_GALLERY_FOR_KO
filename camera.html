@@ -3,11 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
+
+<title>AR Camera</title>
 </head>
 
 <body>
+
 <a-scene
 mindar-image="imageTargetSrc: targets.mind;"
 color-space="sRGB"
@@ -15,16 +19,37 @@ renderer="colorManagement: true"
 vr-mode-ui="enabled: false"
 device-orientation-permission-ui="enabled: false">
 
-<a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+<a-assets>
+  <video
+    id="video1"
+    src="video1.mp4"
+    preload="auto"
+    loop
+    muted
+    playsinline
+    crossorigin="anonymous">
+  </video>
+</a-assets>
 
-<a-entity mindar-image-target="targetIndex: 0">
- <a-video
+<a-camera
+position="0 0 0"
+look-controls="enabled: false">
+</a-camera>
+
+<a-entity
+id="target0"
+mindar-image-target="targetIndex: 0">
+
+  <a-video
     src="#video1"
     width="1.5"
     height="3"
     position="0 0 0">
   </a-video>
+
 </a-entity>
+
+</a-scene>
 
 <script>
 const target0 = document.querySelector("#target0");
@@ -40,6 +65,5 @@ target0.addEventListener("targetLost", () => {
 });
 </script>
 
-</a-scene>
 </body>
 </html>
