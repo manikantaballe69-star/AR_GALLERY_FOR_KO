@@ -8,9 +8,27 @@
 <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
 
 <title>AR Camera</title>
+
+<style>
+#msg{
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+background:black;
+color:white;
+padding:20px;
+font-size:30px;
+display:none;
+z-index:9999;
+}
+</style>
+
 </head>
 
 <body>
+
+<div id="msg">PHOTO1 DETECTED</div>
 
 <a-scene
 embedded
@@ -20,38 +38,26 @@ renderer="colorManagement: true"
 vr-mode-ui="enabled: false"
 device-orientation-permission-ui="enabled: false">
 
-<a-assets>
+<a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
 
-<video
-id="video1"
-src="video1.mp4"
-preload="auto"
-autoplay
-loop
-muted
-playsinline
-crossorigin="anonymous">
-</video>
-
-</a-assets>
-
-<a-camera
-position="0 0 0"
-look-controls="enabled: false">
-</a-camera>
-
-<a-entity mindar-image-target="targetIndex: 0">
-
-<a-video
-src="#video1"
-width="1.5"
-height="3"
-position="0 0 0">
-</a-video>
-
+<a-entity id="target0" mindar-image-target="targetIndex: 0">
+  <a-box color="green" position="0 0 0"></a-box>
 </a-entity>
 
 </a-scene>
+
+<script>
+const target = document.querySelector("#target0");
+const msg = document.querySelector("#msg");
+
+target.addEventListener("targetFound", () => {
+  msg.style.display = "block";
+});
+
+target.addEventListener("targetLost", () => {
+  msg.style.display = "none";
+});
+</script>
 
 </body>
 </html>
