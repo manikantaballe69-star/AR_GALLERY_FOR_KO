@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AR Login</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:#111;
+}
+
+.login-box{
+background:#222;
+padding:30px;
+border-radius:15px;
+width:350px;
+text-align:center;
+color:white;
+}
+
+h2{
+margin-bottom:20px;
+}
+
+input{
+width:100%;
+padding:12px;
+margin:10px 0;
+border:none;
+border-radius:8px;
+}
+
+button{
+width:100%;
+padding:12px;
+margin-top:10px;
+border:none;
+border-radius:8px;
+cursor:pointer;
+font-size:16px;
+}
+
+#msg{
+margin-top:15px;
+color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div class="login-box">
+
+<h2>AR Login</h2>
+
+<input type="text" id="username" placeholder="Username">
+
+<input type="password" id="password" placeholder="Password">
+
+<button onclick="login()">Login</button>
+
+<p id="msg"></p>
+
+</div>
+
+<script>
+function login(){
+
+const username =
+document.getElementById("username").value;
+
+const password =
+document.getElementById("password").value;
+
+if(
+username === "kothi" &&
+password === "2004.06.19"
+){
+window.location.href = "camera.html";
+}
+else{
+document.getElementById("msg").innerText =
+"Wrong Username or Password";
+}
+}
+</script>
+
+</body>
+</html>
