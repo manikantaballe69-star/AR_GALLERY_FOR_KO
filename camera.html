@@ -18,8 +18,27 @@ device-orientation-permission-ui="enabled: false">
 <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
 
 <a-entity mindar-image-target="targetIndex: 0">
-<a-box color="red" position="0 0 0"></a-box>
+ <a-video
+    src="#video1"
+    width="1.5"
+    height="3"
+    position="0 0 0">
+  </a-video>
 </a-entity>
+
+<script>
+const target0 = document.querySelector("#target0");
+const video1 = document.querySelector("#video1");
+
+target0.addEventListener("targetFound", () => {
+  video1.currentTime = 0;
+  video1.play();
+});
+
+target0.addEventListener("targetLost", () => {
+  video1.pause();
+});
+</script>
 
 </a-scene>
 </body>
