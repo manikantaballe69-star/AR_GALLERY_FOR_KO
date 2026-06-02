@@ -3,35 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
-
-<title>AR Camera</title>
-
-<style>
-#msg{
-position:fixed;
-top:50%;
-left:50%;
-transform:translate(-50%,-50%);
-background:black;
-color:white;
-padding:20px;
-font-size:30px;
-display:none;
-z-index:9999;
-}
-</style>
-
 </head>
 
 <body>
-
-<div id="msg">PHOTO1 DETECTED</div>
-
 <a-scene
-embedded
 mindar-image="imageTargetSrc: targets.mind;"
 color-space="sRGB"
 renderer="colorManagement: true"
@@ -40,24 +17,10 @@ device-orientation-permission-ui="enabled: false">
 
 <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
 
-<a-entity id="target0" mindar-image-target="targetIndex: 0">
-  <a-box color="green" position="0 0 0"></a-box>
+<a-entity mindar-image-target="targetIndex: 0">
+<a-box color="red" position="0 0 0"></a-box>
 </a-entity>
 
 </a-scene>
-
-<script>
-const target = document.querySelector("#target0");
-const msg = document.querySelector("#msg");
-
-target.addEventListener("targetFound", () => {
-  msg.style.display = "block";
-});
-
-target.addEventListener("targetLost", () => {
-  msg.style.display = "none";
-});
-</script>
-
 </body>
 </html>
