@@ -13,6 +13,7 @@
 <body>
 
 <a-scene
+embedded
 mindar-image="imageTargetSrc: targets.mind;"
 color-space="sRGB"
 renderer="colorManagement: true"
@@ -23,23 +24,26 @@ device-orientation-permission-ui="enabled: false">
 
 <a-assets>
   <video
-id="video1"
-src="video1.mp4"
-autoplay
-loop
-muted
-playsinline
-webkit-playsinline
-crossorigin="anonymous">
-</video>
+    id="video1"
+    src="./video1.mp4"
+    preload="auto"
+    autoplay
+    loop
+    muted
+    playsinline
+    webkit-playsinline
+    crossorigin="anonymous">
+  </video>
 </a-assets>
 
 <a-entity mindar-image-target="targetIndex: 0">
-  <a-box
-color="blue"
+ <a-video
+src="#video1"
+width="3"
+height="2"
 position="0 0 0"
-scale="1 1 1">
-</a-box>
+material="shader: flat">
+</a-video>
 </a-entity>
 
 </a-scene>
