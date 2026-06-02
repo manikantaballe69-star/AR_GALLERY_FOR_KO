@@ -21,8 +21,24 @@ device-orientation-permission-ui="enabled: false">
 
 <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
 
+<a-assets>
+  <video
+    id="video1"
+    src="video1.mp4"
+    autoplay
+    loop
+    muted
+    playsinline>
+  </video>
+</a-assets>
+
 <a-entity mindar-image-target="targetIndex: 0">
-  <a-plane color="red" width="1" height="1"></a-plane>
+  <a-video
+    src="#video1"
+    width="2"
+    height="1.2"
+    position="0 0 0">
+  </a-video>
 </a-entity>
 
 </a-scene>
