@@ -8,9 +8,39 @@
 <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
 
 <title>AR Camera</title>
+
+<style>
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+#player {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+  display: none;
+  z-index: 9999;
+}
+
+#mainVideo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+</style>
+
 </head>
 
 <body>
+
+<div id="player">
+  <video id="mainVideo" controls></video>
+</div>
 
 <a-scene
 mindar-image="imageTargetSrc: targets.mind;"
@@ -18,18 +48,6 @@ color-space="sRGB"
 renderer="colorManagement: true"
 vr-mode-ui="enabled: false"
 device-orientation-permission-ui="enabled: false">
-
-<a-assets>
-  <video
-    id="video1"
-    src="video1.mp4"
-    preload="auto"
-    loop
-    muted
-    playsinline
-    crossorigin="anonymous">
-  </video>
-</a-assets>
 
 <a-camera
 position="0 0 0"
@@ -40,12 +58,10 @@ look-controls="enabled: false">
 id="target0"
 mindar-image-target="targetIndex: 0">
 
-  <a-video
-    src="#video1"
-    width="1.5"
-    height="3"
-    position="0 0 0">
-  </a-video>
+<a-box
+color="red"
+position="0 0 0">
+</a-box>
 
 </a-entity>
 
@@ -53,15 +69,18 @@ mindar-image-target="targetIndex: 0">
 
 <script>
 const target0 = document.querySelector("#target0");
-const video1 = document.querySelector("#video1");
+const player = document.querySelector("#player");
+const video = document.querySelector("#mainVideo");
 
 target0.addEventListener("targetFound", () => {
-  video1.currentTime = 0;
-  video1.play();
+  video.src = "video1.mp4";
+  player.style.display = "block";
+  video.play();
 });
 
 target0.addEventListener("targetLost", () => {
-  video1.pause();
+  video.pause();
+  player.style.display = "none";
 });
 </script>
 
