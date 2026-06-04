@@ -77,8 +77,8 @@ look-controls="enabled: false">
 </a-scene>
 
 <script>
-const player = document.querySelector("#player");
-const video = document.querySelector("#mainVideo");
+const player = document.getElementById("player");
+const video = document.getElementById("mainVideo");
 
 const videoMap = [
   "video1.mp4",
@@ -104,7 +104,7 @@ const videoMap = [
 
 for (let i = 0; i < 19; i++) {
 
-  const target = document.querySelector("#target" + i);
+  const target = document.getElementById("target" + i);
 
   target.addEventListener("targetFound", () => {
 
@@ -115,15 +115,18 @@ for (let i = 0; i < 19; i++) {
 
     player.style.display = "block";
 
-    video.play();
+    video.play().catch(() => {});
 
   });
 
   target.addEventListener("targetLost", () => {
 
-    video.pause();
+    setTimeout(() => {
 
-    player.style.display = "none";
+      video.pause();
+      player.style.display = "none";
+
+    }, 500);
 
   });
 
